@@ -44,3 +44,18 @@ uScale
     return gResult;
 }
 //
+TGraphErrors*
+uScale
+( TGraphErrors* gTarget, Double_t dScaleX, Double_t dScaleY ) {
+    TGraphErrors* gResult = (TGraphErrors*)(gTarget->Clone());
+    for ( Int_t iPnt = 0; iPnt < gTarget->GetN(); iPnt++ )    {
+        Double_t dCurrent_X        =    gTarget->GetPointX(iPnt);
+        Double_t dCurrent_Y        =    gTarget->GetPointY(iPnt);
+        Double_t dCurrent_eX       =    gTarget->GetErrorX(iPnt);
+        Double_t dCurrent_eY       =    gTarget->GetErrorY(iPnt);
+        gTarget->SetPoint       ( iPnt, dScaleX*dCurrent_X,     dScaleY*dCurrent_Y  );
+        gTarget->SetPointError  ( iPnt, dScaleX*dCurrent_eX,    dScaleY*dCurrent_eY );
+    }
+    return gResult;
+}
+//

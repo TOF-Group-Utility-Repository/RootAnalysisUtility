@@ -33,4 +33,14 @@ TGraph*
 uScale
 ( TGraph* gTarget, Double_t dScaleX, Double_t dScaleY );
 //
+//
+template<   typename TTarget >
+TTarget* uInvertX    ( TTarget* gTarget );
+//
+template<   typename TTarget >
+TTarget* uInvertY    ( TTarget* gTarget );
+//
+template<   typename TTarget >
+TTarget* uInvertXY   ( TTarget* gTarget );
+//
 #endif
