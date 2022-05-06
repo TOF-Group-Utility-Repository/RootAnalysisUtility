@@ -75,3 +75,27 @@ uMovingAverage
     }
     return gResult;
 }
+//
+TGraphErrors*
+uMovingAverage
+( TGraphErrors* gTarget, Int_t nPoints ) {
+    TGraphErrors* gResult = new TGraphErrors();
+    for ( Int_t iPnt = 0; iPnt < gTarget->GetN() - nPoints +1; iPnt++ )    {
+        Double_t    dMeanXVal   =   0;
+        Double_t    dMeanYVal   =   0;
+        Double_t    dMeanXErr   =   0;
+        Double_t    dMeanYErr   =   0;
+        for ( Int_t jPnt = 0; jPnt < nPoints; jPnt++ )    {
+            dMeanXVal   +=  gTarget->GetPointX(iPnt+jPnt);
+            dMeanYVal   +=  gTarget->GetPointY(iPnt+jPnt);
+            dMeanXVal   +=  gTarget->GetErrorX(iPnt+jPnt)*gTarget->GetErrorX(iPnt+jPnt);
+            dMeanYVal   +=  gTarget->GetErrorY(iPnt+jPnt)*gTarget->GetErrorY(iPnt+jPnt);
+        }
+        Int_t   iCurrent_Point  = gResult->GetN();
+        gResult->SetPoint       ( iCurrent_Point, dMeanXVal/nPoints, dMeanYVal/nPoints );
+        gResult->SetPointError  ( iCurrent_Point, sqrt(dMeanXVal)/nPoints, sqrt(dMeanYVal)/nPoints );
+    }
+    return gResult;
+}
+
+

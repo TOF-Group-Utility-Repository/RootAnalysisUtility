@@ -56,4 +56,12 @@ TGraphErrors*
 uMovingAverage
 ( TGraphErrors* gTarget, Int_t nPoints );
 //
-#endif
+//
+//  --- --- --- --- --- --- DIFFERENTIAL FUNCTIONS
+//  --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+//
+TGraphErrors*
+uDerivative
+ ( TGraphErrors* gTarget );
+ //
+ #endif
