@@ -98,34 +98,6 @@ uMovingAverage
     return gResult;
 }
 
-//  --- --- --- --- --- --- DIFFERENTIAL FUNCTIONS
+//  --- --- --- --- --- --- DIFFERENTIAL FUNCTIONS 
 //  --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 //
-TGraphErrors*
-uDerivative
- ( TGraphErrors* gTarget ) {
-    TGraphErrors* gResult = new TGraphErrors();
-    Double_t    dMeanXVal   =   0;
-    Double_t    dDervYVal   =   0;
-    Double_t    dMeanXErr   =   0;
-    Double_t    dDervYErr   =   0;
-    for ( Int_t iPnt = 0; iPnt < gTarget->GetN() - 1; iPnt++ )    {
-        auto kFirst_PointX  = gTarget->GetPointX(iPnt);
-        auto kSecondPointX  = gTarget->GetPointX(iPnt+1);
-        auto kFirst_PointY  = gTarget->GetPointY(iPnt);
-        auto kSecondPointY  = gTarget->GetPointY(iPnt+1);
-        auto kFirst_ErrorX  = gTarget->GetErrorX(iPnt);
-        auto kSecondErrorX  = gTarget->GetErrorX(iPnt+1);
-        auto kFirst_ErrorY  = gTarget->GetErrorY(iPnt);
-        auto kSecondErrorY  = gTarget->GetErrorY(iPnt+1);
-        dMeanXVal   =   0.5*( kFirst_PointX + kSecondPointX );
-        dMeanXErr   =   0.5*uSquareSum( { kFirst_ErrorX, kSecondErrorX } );
-        dDervYVal   =   ( kSecondPointY - kFirst_PointY )/( kSecondPointX - kFirst_PointX );
-        dDervYErr   =   dDervYVal*uSquareSum( { uSquareSum( { kFirst_ErrorX, kSecondErrorX } )/( kSecondPointX - kFirst_PointX ), uSquareSum( { kFirst_ErrorY, kSecondErrorY } )/( kSecondPointY - kFirst_PointY ) } );
-        Int_t   iCurrent_Point  = gResult->GetN();
-        gResult->SetPoint       ( iCurrent_Point, dMeanXVal, dDervYVal );
-        gResult->SetPointError  ( iCurrent_Point, sqrt(dMeanXVal), sqrt(dDervYErr) );
-    }
-    return gResult;
-}
-
