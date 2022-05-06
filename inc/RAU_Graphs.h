@@ -43,4 +43,7 @@ TTarget* uInvertY    ( TTarget* gTarget );
 template<   typename TTarget >
 TTarget* uInvertXY   ( TTarget* gTarget );
 //
+TGraph*
+uMovingAverage
+( TGraph* gTarget, Int_t nPoints );
 #endif
