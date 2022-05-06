@@ -29,4 +29,8 @@ uMakeMeTGraphErrors ( TGraph* gTarget );
 //  --- --- --- --- --- --- POINT MANIPULATION FUNCTIONS
 //  --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
 //
+TGraph*
+uScale
+( TGraph* gTarget, Double_t dScaleX, Double_t dScaleY );
+//
 #endif

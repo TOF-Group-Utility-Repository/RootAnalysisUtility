@@ -25,3 +25,22 @@ uMakeMeTGraphErrors
     return gResult;
 }
 //
+//  --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+//  --- --- --- --- --- --- //! GRAPHS MANIPULATION FUNCTIONS
+//  --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+//
+//  --- --- --- --- --- --- POINT MANIPULATION FUNCTIONS
+//  --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+//
+TGraph*
+uScale
+( TGraph* gTarget, Double_t dScaleX, Double_t dScaleY ) {
+    TGraph* gResult = (TGraph*)(gTarget->Clone());
+    for ( Int_t iPnt = 0; iPnt < gTarget->GetN(); iPnt++ )    {
+        Double_t dCurrent_X        =    gTarget->GetPointX(iPnt);
+        Double_t dCurrent_Y        =    gTarget->GetPointY(iPnt);
+        gTarget->SetPoint(iPnt,dScaleX*dCurrent_X,dScaleY*dCurrent_Y);
+    }
+    return gResult;
+}
+//
