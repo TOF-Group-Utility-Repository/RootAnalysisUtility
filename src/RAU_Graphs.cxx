@@ -9,4 +9,19 @@
 //
 //
 //
-#include "../inc/RAU_Graphs.h"
+// #include "../inc/RAU_Graphs.h"
+//
+//
+TGraphErrors*
+uMakeMeTGraphErrors
+( TGraph* gTarget ) {
+    TGraphErrors* gResult = new TGraphErrors();
+    for ( Int_t iPnt = 0; iPnt < gTarget->GetN(); iPnt++ )    {
+        Double_t dCurrent_X        =    gTarget->GetPointX(iPnt);
+        Double_t dCurrent_Y        =    gTarget->GetPointY(iPnt);
+        gResult->SetPoint(iPnt,dCurrent_X,dCurrent_Y);
+        gResult->SetPointError(iPnt,0,0);
+    }
+    return gResult;
+}
+//
