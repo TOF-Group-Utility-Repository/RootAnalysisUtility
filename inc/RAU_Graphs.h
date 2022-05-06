@@ -32,6 +32,11 @@ uMakeMeTGraphErrors ( TGraph* gTarget );
 TGraph*
 uScale
 ( TGraph* gTarget, Double_t dScaleX, Double_t dScaleY );
+// 
+// 
+TGraphErrors*
+uScale
+( TGraphErrors* gTarget, Double_t dScaleX, Double_t dScaleY );
 //
 //
 template<   typename TTarget >
@@ -46,4 +51,9 @@ TTarget* uInvertXY   ( TTarget* gTarget );
 TGraph*
 uMovingAverage
 ( TGraph* gTarget, Int_t nPoints );
+//
+TGraphErrors*
+uMovingAverage
+( TGraphErrors* gTarget, Int_t nPoints );
+//
 #endif
